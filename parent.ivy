@@ -15,11 +15,11 @@
    limitations under the License.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org"> 
-	<info organisation="org.apache.easyant.buildtypes" module="buildtypes-orchestrator" revision="0.1" >
-	       <description>This module acts as parent to share common stuff for subprojects.</description>
-		<ea:plugin module="scm-svn" revision="0.1" as="scm" load-strategy="LOCAL">
-			<ea:property name="scm.connection.baseurl" value="https://svn.easyant.org/buildtypes/trunk"/>
-			<ea:property name="scm.tag.name" value="${ivy.module}-${version}"/>
-		</ea:plugin>
-	</info>
+    <info organisation="org.apache.easyant.buildtypes" module="buildtypes-orchestrator" revision="0.1" >
+           <description>This module acts as parent to share common stuff for subprojects.</description>
+        <ea:plugin module="scm-svn" revision="0.1" as="scm" load-strategy="LOCAL">
+            <ea:property name="scm.connection.baseurl" value="https://svn.easyant.org/buildtypes/trunk"/>
+            <ea:property name="scm.tag.name" value="${ivy.module}-${version}"/>
+        </ea:plugin>
+    </info>
 </ivy-module>
