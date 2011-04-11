@@ -15,7 +15,7 @@
    limitations under the License.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org"> 
-    <info organisation="org.apache.easyant.buildtypes" module="build-std-java" revision="0.2">
+    <info organisation="org.apache.easyant.buildtypes" module="build-std-java" revision="0.3">
            <description>A standard build for simple java modules, relying on standard phases, and providing compilation, execution and unit tests</description>
            <ea:build organisation="org.apache.easyant.buildtypes" module="build-std-ant-plugin" revision="0.1"/>
         </info>

@@ -17,15 +17,15 @@
 <project name="org.apache.easyant.buildtypes#meta-build"
     xmlns:ea="antlib:org.apache.easyant"
     xmlns:ivy="antlib:org.apache.ivy.ant">
-    
-    <ea:core-version requiredrevision="[0.8,+]" />
-    
-    <ea:include mrid="org.apache.easyant.plugins#phases-std;0.2"/>
-    
+
+    <ea:core-version requiredrevision="[0.9,+]" />
+
     <property file="${org.apache.easyant.buildtypes#meta-build.properties.file}" />
 
-    <ea:include mrid="org.apache.easyant.plugins#clean-std;0.1" as="clean"/>
-    <ea:include mrid="org.apache.easyant.plugins#build-tools;0.2" as="meta"/>
+    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.2" />
+    <ea:import mrid="org.apache.easyant.plugins#build-tools;0.3" />
 
-    <target name="doit" depends="verify" />
+    <!-- friendly target names -->
+    <target name="clean" depends="clean-std:clean" description="Clean the project" />
+
 </project>
