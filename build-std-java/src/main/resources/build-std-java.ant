@@ -37,7 +37,7 @@
 
     <!-- plugin binding -->
     <bindtargets targets="manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="abstract-package:package-ready" />
-    <bindtargets targets="compile-test-java:compile,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
+    <bindtargets targets="abstract-compile:compile-finished,resources-std:copy-resources,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
     <bindtargets targets="package-jar:jar" extensionPoint="ivy-publication:publish-ready" />
 
     <!-- bind high level targets -->
