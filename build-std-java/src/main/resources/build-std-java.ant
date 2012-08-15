@@ -44,6 +44,7 @@
     <bindtargets targets="clean-std:clean" extensionPoint="clean"/>
     <bindtargets targets="abstract-compile:compile-finished" extensionPoint="compile"/>
     <bindtargets targets="abstract-test:test-run" extensionPoint="test"/>
+    <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test"/>
     <bindtargets targets="abstract-package:package-finished" extensionPoint="package"/>
     <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
     <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
