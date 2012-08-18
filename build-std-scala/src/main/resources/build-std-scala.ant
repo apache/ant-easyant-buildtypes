@@ -23,28 +23,36 @@
 
     <property file="${org.apache.easyant.buildtypes#build-std-scala.properties.file}" />
 
-    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-publication;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-utils;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#compile-scala;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#compile-test-scala;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#test-junit;0.3" />
-    <ea:import mrid="org.apache.easyant.plugins#manifest;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#package-jar;0.2" />
+    <ea:import mrid="org.apache.easyant.plugins#phases-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#ivy-publication;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#ivy-utils;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#compile-scala;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#compile-test-scala;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#test-junit;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#manifest;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#package-jar;0.9" />
 
     <!-- plugin binding -->
-    <bindtargets targets="compile-scala:compile,manifest:manifest,manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="package-jar:jar-ready" />
-    <bindtargets targets="compile-test-scala:compile,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
-    <bindtargets targets="package-jar:jar,source-jar:main" extensionPoint="ivy-publication:publish-ready" />
+    <bindtargets targets="manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="abstract-package:package-ready" />
+    <bindtargets targets="abstract-compile:compile-finished,resources-std:copy-resources,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
+    <bindtargets targets="package-jar:jar" extensionPoint="ivy-publication:publish-ready" />
 
-    <!-- friendly target names -->
-    <target name="clean" depends="clean-std:clean" description="Clean the project" />
-    <target name="compile" depends="compile-scala:compile" description="Compile the project" />
-    <target name="test" depends="test-junit:run" description="Launch the unit tests" />
+    <!-- bind high level targets -->
+    <bindtargets targets="clean-std:clean" extensionPoint="clean"/>
+    <bindtargets targets="abstract-compile:compile-finished" extensionPoint="compile"/>
+    <bindtargets targets="abstract-test:test-run" extensionPoint="test"/>
+    <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test"/>
+    <bindtargets targets="abstract-package:package-finished" extensionPoint="package"/>
+    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
+    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
+    <bindtargets targets="ivy-publication:release" extensionPoint="release"/>
+
+    <!-- additionnal friendtly target names -->
     <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
-    <target name="install" depends="ivy-publication:publish-local" description="Install the artifacts into the repository" />
+    <target name="install" depends="ivy-publication:publish-local" description="Install the artifacts into local repository" />
 
 </project>
