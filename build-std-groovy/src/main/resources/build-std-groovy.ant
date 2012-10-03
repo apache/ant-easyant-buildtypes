@@ -38,15 +38,15 @@
 
     <!-- plugin binding -->
     <bindtargets targets="manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="abstract-package:package-ready" />
-    <bindtargets targets="abstract-compile:compile-finished,resources-std:copy-resources,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
+    <bindtargets targets="abstract-compile:compile,resources-std:copy-resources,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
     <bindtargets targets="package-jar:jar" extensionPoint="ivy-publication:publish-ready" />
 
     <!-- bind high level targets -->
     <bindtargets targets="clean-std:clean" extensionPoint="clean"/>
-    <bindtargets targets="abstract-compile:compile-finished" extensionPoint="compile"/>
+    <bindtargets targets="abstract-compile:compile" extensionPoint="compile"/>
     <bindtargets targets="abstract-test:test-run" extensionPoint="test"/>
     <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test"/>
-    <bindtargets targets="abstract-package:package-finished" extensionPoint="package"/>
+    <bindtargets targets="abstract-package:package" extensionPoint="package"/>
     <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
     <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
     <bindtargets targets="ivy-publication:release" extensionPoint="release"/>
