@@ -23,18 +23,29 @@
 
     <property file="${org.apache.easyant.buildtypes#build-std-skeleton.properties.file}" />
 
-    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#easyant-plugin-publication;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#manifest;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#antunit;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#package-jar;0.2" />
+    <ea:import mrid="org.apache.easyant.plugins#phases-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#easyant-plugin-publication;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#antunit;0.9" />
 
-    <!-- friendly target names -->
-    <target name="clean" depends="clean-std:clean" description="Clean the project" />
-    <target name="test" depends="antunit:run" description="Launch the unit tests" />
-    <target name="dist" depends="easyant-plugin-publication:before-test" description="Produce every artifact to be distributed" />
+     <!-- friendly target names -->
+    <bindtargets targets="resources-std:copy-resources" extensionPoint="ivy-publication:publish-ready" />
+
+    <!-- bind high level targets -->
+    <bindtargets targets="clean-std:clean" extensionPoint="clean"/>
+    <bindtargets targets="abstract-test:test-run" extensionPoint="test"/>
+    <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test"/>
+    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
+    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
+    <bindtargets targets="ivy-publication:release" extensionPoint="release"/>
+    <bindtargets targets="antunit:run" extensionPoint="test"/>
+
+    <!-- additionnal friendtly target names -->
+    <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
+    <target name="install" depends="ivy-publication:publish-local" description="Install the artifacts into local repository" />
+
 
 </project>

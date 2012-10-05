@@ -31,6 +31,7 @@
     <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#ivy-utils;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#easyant-plugin-publication;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#antunit;0.9" />
 
     <!-- friendly target names -->
     <bindtargets targets="resources-std:copy-resources" extensionPoint="ivy-publication:publish-ready" />
@@ -42,6 +43,8 @@
     <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
     <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
     <bindtargets targets="ivy-publication:release" extensionPoint="release"/>
+    <bindtargets targets="antunit:run" extensionPoint="test"/>
+
 
     <!-- additionnal friendtly target names -->
     <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
