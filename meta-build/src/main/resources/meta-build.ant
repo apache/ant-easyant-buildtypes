@@ -14,18 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<project name="org.apache.easyant.buildtypes#meta-build"
-    xmlns:ea="antlib:org.apache.easyant"
-    xmlns:ivy="antlib:org.apache.ivy.ant">
-
+<project name="org.apache.easyant.buildtypes#meta-build" xmlns:ea="antlib:org.apache.easyant" xmlns:ivy="antlib:org.apache.ivy.ant">
     <ea:core-version requiredrevision="[0.9,+]" />
-
     <property file="${org.apache.easyant.buildtypes#meta-build.properties.file}" />
-
     <ea:import mrid="org.apache.easyant.plugins#clean-std;0.2" />
     <ea:import mrid="org.apache.easyant.plugins#build-tools;0.3" />
 
     <!-- friendly target names -->
     <target name="clean" depends="clean-std:clean" description="Clean the project" />
-
 </project>

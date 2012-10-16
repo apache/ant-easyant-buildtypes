@@ -14,48 +14,49 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<project name="org.apache.easyant.plugins;build-std-java-test" 
-    xmlns:au="antlib:org.apache.ant.antunit" 
-    xmlns:ivy="antlib:org.apache.ivy.ant"
-    xmlns:ea="antlib:org.apache.easyant">
+<project name="org.apache.easyant.plugins;build-std-java-test" xmlns:au="antlib:org.apache.ant.antunit"
+    xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:ea="antlib:org.apache.easyant">
     
-    <!-- Import your plugin --> 
-    <property name="target" value="target/test-antunit"/>
+    <!-- Import your plugin -->
+    <property name="target" value="target/test-antunit" />
     <!-- configure easyant in current project -->
     <ea:configure-easyant-ivy-instance />
     <!-- import our local plugin -->
-    <property name="easyant.file" value="${basedir}/module.ivy"/>
-    <ea:import-test-module moduleIvy="../../../module.ivy" sourceDirectory="../../main/resources"/>
+    <property name="easyant.file" value="${basedir}/module.ivy" />
+    <ea:import-test-module moduleIvy="../../../module.ivy" sourceDirectory="../../main/resources" />
 
-    <!-- Defines a setUp / tearDown (before each test) that cleans the environnement --> 
+    <!-- Defines a setUp / tearDown (before each test) that cleans the environnement -->
     <target name="clean-test" description="remove stale build artifacts before / after each test">
         <delete dir="${basedir}" includeemptydirs="true">
-            <include name="**/target/**"/>
-            <include name="**/lib/**"/>
+            <include name="**/target/**" />
+            <include name="**/lib/**" />
         </delete>
     </target>
-    
     <target name="setUp" depends="clean-test">
-       <ivy:settings id="project.ivy.instance"/>
+        <ivy:settings id="project.ivy.instance" />
     </target>
-    <target name="tearDown" depends="clean-test"/>
-    
+    <target name="tearDown" depends="clean-test" />
     <target name="test-build-std-java:clean" depends="clean">
-         <au:assertLogContains text="Cleaning ${target}..."/>
-         <au:assertLogContains text="Build sequence for target(s) `setUp', `test-build-std-java:clean' is [clean-test, setUp, clean-std:clean, clean, test-build-std-java:clean]" level="debug"/>
-   </target>
-
-   <target name="test-build-std-java:compile" depends="compile">
-         <au:assertLogContains text="Build sequence for target(s) `setUp', `test-build-std-java:compile' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, test-build-std-java:compile]" level="debug"/>
+        <au:assertLogContains text="Cleaning ${target}..." />
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-java:clean' is [clean-test, setUp, clean-std:clean, clean, test-build-std-java:clean]"
+            level="debug" />
+    </target>
+    <target name="test-build-std-java:compile" depends="compile">
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-java:compile' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, test-build-std-java:compile]"
+            level="debug" />
     </target>
     <target name="test-build-std-java:test" depends="test">
-         <au:assertLogContains text="Running org.apache.easyant.example.ExampleTest"/>
-         <au:assertLogContains text="Tests run: 2, Failures: 0, Errors: 0"/>
-         <au:assertLogContains text="Build sequence for target(s) `setUp', `test-build-std-java:test' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, resources-std:init, -resources-std:check-resources, resources-std:copy-resources, resources-std:copy-test-resources, abstract-test:test-ready, abstract-test:init, test-junit:init, abstract-test:compute-test-sets, -test-junit:test, test-junit:run, abstract-test:test-run, test, test-build-std-java:test]" level="debug"/>
+        <au:assertLogContains text="Running org.apache.easyant.example.ExampleTest" />
+        <au:assertLogContains text="Tests run: 2, Failures: 0, Errors: 0" />
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-java:test' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, resources-std:init, -resources-std:check-resources, resources-std:copy-resources, resources-std:copy-test-resources, abstract-test:test-ready, abstract-test:init, test-junit:init, abstract-test:compute-test-sets, -test-junit:test, test-junit:run, abstract-test:test-run, test, test-build-std-java:test]"
+            level="debug" />
     </target>
-
-   <target name="test-build-std-java:package" depends="package">
-       <au:assertLogContains text="Build sequence for target(s) `setUp', `test-build-std-java:package' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, manifest:init, -manifest:generate-version-number, manifest:manifest, manifest:manifest-runnable, resources-std:init, -resources-std:check-resources, resources-std:copy-resources, abstract-package:package-ready, abstract-package:init, abstract-package:compute-metainf, package-jar:init, package-jar:jar, abstract-package:register-main-artifact, abstract-package:package, package, test-build-std-java:package]" level="debug"/>
-   </target>
-
+    <target name="test-build-std-java:package" depends="package">
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-java:package' is [clean-test, setUp, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, abstract-compile:compile-ready, compile-java:init, compile-java:compile, compile-test-java:compile, compile-test-java:compile-integration, abstract-compile:compile, compile, manifest:init, -manifest:generate-version-number, manifest:manifest, manifest:manifest-runnable, resources-std:init, -resources-std:check-resources, resources-std:copy-resources, abstract-package:package-ready, abstract-package:init, abstract-package:compute-metainf, package-jar:init, package-jar:jar, abstract-package:register-main-artifact, abstract-package:package, package, test-build-std-java:package]"
+            level="debug" />
+    </target>
 </project>

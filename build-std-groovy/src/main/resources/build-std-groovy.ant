@@ -14,15 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<project name="org.apache.easyant.buildtypes#build-std-groovy"
-    xmlns:ea="antlib:org.apache.easyant">
-    
+<project name="org.apache.easyant.buildtypes#build-std-groovy" xmlns:ea="antlib:org.apache.easyant">
     <ea:core-version requiredrevision="[0.9,+]" />
-
-    <echo message="Building ${ivy.organisation} ${ivy.module} with org.apache.easyant.buildtypes#build-std-groovy..."/>
-
+    <echo message="Building ${ivy.organisation} ${ivy.module} with org.apache.easyant.buildtypes#build-std-groovy..." />
     <property file="${org.apache.easyant.buildtypes#build-std-groovy.properties.file}" />
-
     <ea:import mrid="org.apache.easyant.plugins#phases-std;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#clean-std;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.9" />
@@ -38,21 +33,21 @@
 
     <!-- plugin binding -->
     <bindtargets targets="manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="abstract-package:package-ready" />
-    <bindtargets targets="abstract-compile:compile,resources-std:copy-resources,resources-std:copy-test-resources" extensionPoint="abstract-test:test-ready" />
+    <bindtargets targets="abstract-compile:compile,resources-std:copy-resources,resources-std:copy-test-resources"
+        extensionPoint="abstract-test:test-ready" />
     <bindtargets targets="package-jar:jar" extensionPoint="ivy-publication:publish-ready" />
 
     <!-- bind high level targets -->
-    <bindtargets targets="clean-std:clean" extensionPoint="clean"/>
-    <bindtargets targets="abstract-compile:compile" extensionPoint="compile"/>
-    <bindtargets targets="abstract-test:test-run" extensionPoint="test"/>
-    <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test"/>
-    <bindtargets targets="abstract-package:package" extensionPoint="package"/>
-    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local"/>
-    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared"/>
-    <bindtargets targets="ivy-publication:release" extensionPoint="release"/>
+    <bindtargets targets="clean-std:clean" extensionPoint="clean" />
+    <bindtargets targets="abstract-compile:compile" extensionPoint="compile" />
+    <bindtargets targets="abstract-test:test-run" extensionPoint="test" />
+    <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test" />
+    <bindtargets targets="abstract-package:package" extensionPoint="package" />
+    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local" />
+    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared" />
+    <bindtargets targets="ivy-publication:release" extensionPoint="release" />
 
     <!-- additionnal friendtly target names -->
     <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
     <target name="install" depends="ivy-publication:publish-local" description="Install the artifacts into local repository" />
-
 </project>
