@@ -22,4 +22,6 @@
 
     <!-- friendly target names -->
     <target name="clean" depends="clean-std:clean" description="Clean the project" />
+
+    <ea:configure-project defaulttarget="dist"/>
 </project>

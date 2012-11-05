@@ -44,4 +44,6 @@
     <!-- additionnal friendtly target names -->
     <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
     <target name="install" depends="ivy-publication:publish-local" description="Install the artifacts into local repository" />
+
+    <ea:configure-project defaulttarget="dist" />
 </project>
