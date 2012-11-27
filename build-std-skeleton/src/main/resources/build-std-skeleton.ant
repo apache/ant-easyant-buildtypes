@@ -33,9 +33,12 @@
     <bindtargets targets="clean-std:clean" extensionPoint="clean" />
     <bindtargets targets="abstract-test:test-run" extensionPoint="test" />
     <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test" />
-    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local" />
-    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared" />
-    <bindtargets targets="ivy-publication:release" extensionPoint="release" />
+    <bindtargets targets="ivy-publication:generate-local-version,dist,ivy-publication:publish-local"
+        extensionPoint="publish-local" />
+    <bindtargets targets="ivy-publication:generate-shared-version,dist,ivy-publication:publish-shared"
+        extensionPoint="publish-shared" />
+    <bindtargets targets="ivy-publication:generate-release-version,verify,ivy-publication:release"
+        extensionPoint="release" />
     <bindtargets targets="antunit:run" extensionPoint="test" />
 
     <!-- additionnal friendtly target names -->

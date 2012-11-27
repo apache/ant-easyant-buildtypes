@@ -43,9 +43,9 @@
     <bindtargets targets="abstract-test:test-run" extensionPoint="test" />
     <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test" />
     <bindtargets targets="abstract-package:package" extensionPoint="package" />
-    <bindtargets targets="ivy-publication:publish-local" extensionPoint="publish-local" />
-    <bindtargets targets="ivy-publication:publish-shared" extensionPoint="publish-shared" />
-    <bindtargets targets="ivy-publication:release" extensionPoint="release" />
+    <bindtargets targets="ivy-publication:generate-local-version,package,ivy-publication:publish-local" extensionPoint="publish-local" />
+    <bindtargets targets="ivy-publication:generate-shared-version,package,ivy-publication:publish-shared" extensionPoint="publish-shared" />
+    <bindtargets targets="ivy-publication:generate-release-version,verify,ivy-publication:release" extensionPoint="release" />
   
     <!-- additionnal friendtly target names -->
     <target name="dist" depends="ivy-publication:publish-ready" description="Produce every artifact to be distributed" />
