@@ -27,7 +27,7 @@
     <ea:import mrid="org.apache.easyant.plugins#resources-std;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#compile-scala;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#compile-test-scala;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#test-junit;0.9" />
+    <ea:import mrid="org.apache.easyant.plugins#junit;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#manifest;0.9" />
     <ea:import mrid="org.apache.easyant.plugins#package-jar;0.9" />
 
