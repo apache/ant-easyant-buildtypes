@@ -23,16 +23,16 @@
 
     <property file="${org.apache.easyant.buildtypes#build-osgi-bundle-java.properties.file}" />
 
-    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-publication;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#compile-java;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#compile-test-java;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#test-junit;0.3" />
-    <ea:import mrid="org.apache.easyant.plugins#manifest;0.2" />
-    <ea:import mrid="org.apache.easyant.plugins#osgi-bundle;0.2" />
+    <ea:plugin module="clean-std" revision="0.2" />
+    <ea:plugin module="ivy-provisioning" revision="0.2" />
+    <ea:plugin module="default-version-strategy" revision="0.2" />
+    <ea:plugin module="ivy-publication" revision="0.2" />
+    <ea:plugin module="resources-std" revision="0.2" />
+    <ea:plugin module="compile-java" revision="0.2" />
+    <ea:plugin module="compile-test-java" revision="0.2" />
+    <ea:plugin module="test-junit" revision="0.3" />
+    <ea:plugin module="manifest" revision="0.2" />
+    <ea:plugin module="osgi-bundle" revision="0.2" />
 
     <!-- plugin binding -->
     <bindtargets targets="compile-java:compile,manifest:manifest,resources-std:copy-resources" extensionPoint="osgi-bundle:bundle-ready" />

@@ -18,13 +18,13 @@
     <ea:core-version requiredrevision="[0.9,+]" />
     <echo message="Building ${ivy.organisation} ${ivy.module} with org.apache.easyant.buildtypes#build-std-skeleton..." />
     <property file="${org.apache.easyant.buildtypes#build-std-skeleton.properties.file}" />
-    <ea:import mrid="org.apache.easyant.plugins#phases-std;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#clean-std;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#resources-std;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#default-version-strategy;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#ivy-provisioning;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#easyant-plugin-publication;0.9" />
-    <ea:import mrid="org.apache.easyant.plugins#antunit;0.9" />
+    <ea:plugin module="phases-std" revision="0.9" />
+    <ea:plugin module="clean-std" revision="0.9" />
+    <ea:plugin module="resources-std" revision="0.9" />
+    <ea:plugin module="default-version-strategy" revision="0.9" />
+    <ea:plugin module="ivy-provisioning" revision="0.9" />
+    <ea:plugin module="easyant-plugin-publication" revision="0.9" />
+    <ea:plugin module="antunit" revision="0.9" />
 
      <!-- friendly target names -->
     <bindtargets targets="resources-std:copy-resources" extensionPoint="ivy-publication:publish-ready" />
