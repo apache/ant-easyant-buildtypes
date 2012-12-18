@@ -24,15 +24,19 @@
     <ea:plugin module="default-version-strategy" revision="0.9" />
     <ea:plugin module="ivy-provisioning" revision="0.9" />
     <ea:plugin module="easyant-plugin-publication" revision="0.9" />
+    <ea:plugin module="manifest" revision="0.9"/>
+    <ea:plugin module="package-jar" revision="0.9"/>
     <ea:plugin module="antunit" revision="0.9" />
 
-     <!-- friendly target names -->
-    <bindtargets targets="resources-std:copy-resources" extensionPoint="ivy-publication:publish-ready" />
+    <!-- plugin binding -->
+    <bindtargets targets="manifest:manifest-runnable,resources-std:copy-resources" extensionPoint="abstract-package:package-ready" />
+    <bindtargets targets="package-jar:jar" extensionPoint="ivy-publication:publish-ready" />
 
     <!-- bind high level targets -->
     <bindtargets targets="clean-std:clean" extensionPoint="clean" />
     <bindtargets targets="abstract-test:test-run" extensionPoint="test" />
     <bindtargets targets="abstract-test:integration-test-run" extensionPoint="integration-test" />
+    <bindtargets targets="abstract-package:package" extensionPoint="package" />
     <bindtargets targets="ivy-publication:generate-local-version,dist,ivy-publication:publish-local"
         extensionPoint="publish-local" />
     <bindtargets targets="ivy-publication:generate-shared-version,dist,ivy-publication:publish-shared"
