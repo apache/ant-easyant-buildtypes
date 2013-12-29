@@ -1,0 +1,65 @@
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<project name="org.apache.easyant.plugins;build-std-ant-plugin-test" xmlns:au="antlib:org.apache.ant.antunit"
+    xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:ea="antlib:org.apache.easyant">
+    
+    <!-- Import your plugin -->
+    <property name="target" value="target/test-antunit" />
+    <!-- configure easyant in current project -->
+    <ea:configure-easyant-ivy-instance />
+    <!-- import our local plugin -->
+    <property name="easyant.file" value="${basedir}/module.ivy" />
+    <ea:import-test-module moduleIvy="../../../module.ivy" sourceDirectory="../../main/resources" />
+
+    <!-- Defines a setUp / tearDown (before each test) that cleans the environnement -->
+    <target name="clean-test" description="remove stale build artifacts before / after each test">
+        <delete dir="${basedir}" includeemptydirs="true">
+            <include name="**/target/**" />
+            <include name="**/lib/**" />
+        </delete>
+    </target>
+    <target name="setUp" depends="clean-test">
+        <ivy:settings id="project.ivy.instance" />
+    </target>
+    <target name="tearDown" depends="clean-test" />
+    <target name="test-build-std-ant-plugin:clean" depends="clean">
+        <au:assertLogContains text="Cleaning ${target}..." />
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-ant-plugin:clean' is [clean-test, setUp, clean-std:clean, clean, test-build-std-ant-plugin:clean]"
+            level="debug" />
+    </target>
+    <!-- disabled as antunit conflicts with itself and break all assertions on logs 
+    <target name="test-build-std-ant-plugin:test" depends="test">
+        <au:assertLogContains text="Tests run: 1, Failures: 0, Errors: 0" />
+        <au:assertLogContains text="Target: test-simpleplugin:dumb took "/>
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-ant-plugin:test' is [clean-test, setUp, compile, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, abstract-provisioning:provisioning, easyant-plugin-publication:before-test, abstract-test:test-ready, abstract-test:test-run, antunit:init, -antunit:test, antunit:run, test, test-build-std-ant-plugin:test]"
+            level="debug" />
+    </target>
+    -->
+    <target name="test-build-std-ant-plugin:package" depends="package">
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-ant-plugin:package' is [clean-test, setUp, compile, package, test-build-std-ant-plugin:package]"
+            level="debug" />
+    </target>
+    
+    <target name="test-build-std-ant-plugin:dist" depends="dist">
+        <au:assertLogContains
+            text="Build sequence for target(s) `setUp', `test-build-std-ant-plugin:dist' is [clean-test, setUp, resources-std:init, -resources-std:check-resources, resources-std:copy-resources, -ivy-provisioning:init, abstract-provisioning:provisioning-ready, -ivy-provisioning:resolve, -ivy-provisioning:resolve-main-confs, -ivy-provisioning:resolve-test-confs, -ivy-provisioning:resolve-provided-confs, ivy-provisioning:resolve, ivy-publication:publish-ready, dist, test-build-std-ant-plugin:dist]"
+            level="debug" />
+    </target>
+</project>

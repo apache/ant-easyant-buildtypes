@@ -29,7 +29,7 @@
     <ea:plugin module="antunit" revision="0.9" />
 
     <!-- friendly target names -->
-    <bindtargets targets="resources-std:copy-resources" extensionPoint="ivy-publication:publish-ready" />
+    <bindtargets targets="resources-std:copy-resources,ivy-provisioning:resolve" extensionPoint="ivy-publication:publish-ready" />
 
     <!-- bind high level targets -->
     <bindtargets targets="clean-std:clean" extensionPoint="clean" />

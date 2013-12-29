@@ -20,6 +20,7 @@
         <description>A standard build for true ant plugins, relying on standard phases, and providing compilation,
             execution and unit tests</description>
         <ea:build organisation="org.apache.easyant.buildtypes" module="build-std-ant-plugin" revision="0.1" />
+	<ea:property name="test.antunit.excludes.pattern" value="**/*simpleplugin-test.xml"/> 
     </info>
     <configurations>
         <conf name="default" description="runtime dependencies artifact can be used with this conf" />
